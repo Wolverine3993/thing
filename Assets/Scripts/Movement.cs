@@ -12,21 +12,23 @@ public class Movement : MonoBehaviour
     float yRot;
     [Header("Movement")]
     [SerializeField] float movementSpeed;
-    [SerializeField] float jumpHeight;
     [SerializeField] float maxSpeed;
-    [SerializeField] float deceleration;
+    [Header("Jumping")]
+    [SerializeField] float jumpHeight;
+    [SerializeField] LayerMask groundLayer;
     Rigidbody rb;
-    [SerializeField] TMP_Text text;
+    Collider coll;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         cameraObject = Camera.main.gameObject;
         rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
     }
     private void Update()
     {
         DoCameraShenanigans();
-        
+        TouchingGround();
     }
     private void FixedUpdate()
     {
@@ -47,18 +49,29 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         Vector3 move = transform.forward * z + transform.right * x;
         rb.AddForce(new Vector3(move.x, 0, move.z).normalized * movementSpeed);
-        text.text = $"Velocity: {new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude}";
         Vector3 targetThing = Vector3.ClampMagnitude(new Vector3(rb.velocity.x, 0, rb.velocity.z), maxSpeed);
         if(new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude > maxSpeed)
             rb.velocity = new Vector3(targetThing.x, rb.velocity.y, targetThing.z);
-        float xVal = 0;
-        float zVal = 0;
-        if (x == 0)
-            xVal = -0.5f;
-        if (z == 0)
-            zVal = -0.5f;
-        Debug.Log(z);
-        Vector3 good = rb.velocity.x * transform.right + rb.velocity.z * transform.forward;
-        rb.velocity = (new Vector3(good.x, rb.velocity.y, good.z));
+        Vector3 zVel = rb.velocity / 2;
+        zVel.y = rb.velocity.y;
+        rb.velocity = zVel;
+    }
+    private bool TouchingGround()
+    {
+        Vector3 center = coll.bounds.center;
+        center.y = coll.bounds.min.y - 0.001f;
+
+        Vector3 halfExtents = new Vector3((coll.bounds.size.x - 0.1f)/2, 0.05f, (coll.bounds.size.z - 0.1f)/2);
+
+        bool raycastHit = Physics.BoxCast(center, halfExtents, Vector3.down, Quaternion.Euler(0, 0, 0), 0.1f, groundLayer);
+        Debug.Log(raycastHit);
+        return raycastHit;
+    }
+    private void OnDrawGizmos()
+    {
+        Vector3 center = coll.bounds.center;
+        center.y = coll.bounds.min.y - 0.001f;
+        Vector3 halfExtents = new Vector3((coll.bounds.size.x - 0.1f) / 2, 0.05f, (coll.bounds.size.z - 0.1f) / 2) * 2;
+        Gizmos.DrawCube(center, halfExtents);
     }
 }
