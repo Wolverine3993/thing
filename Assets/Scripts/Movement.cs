@@ -29,11 +29,11 @@ public class Movement : MonoBehaviour
         z = Input.GetAxisRaw("Vertical");
         x = Input.GetAxisRaw("Horizontal");
         DoCameraShenanigans();
-        Jump();
     }
     private void FixedUpdate()
     {
         DoMovement();
+        Jump();
     }
     private void DoCameraShenanigans()
     {
