@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attacking : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] LayerMask attackLayer;
     bool CanSwing = true;
     void Update()
     {
@@ -18,5 +19,9 @@ public class Attacking : MonoBehaviour
     {
         anim.SetBool("Swing", false);
         CanSwing = true;
+    }
+    public void Attack()
+    {
+        RaycastHit[] raycastHit = Physics.BoxCastAll(transform.position, new Vector3(), transform.forward, Quaternion.Euler(0, 0, 0), 10f, attackLayer);
     }
 }

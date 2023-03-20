@@ -9,4 +9,8 @@ public class SwordEvent : MonoBehaviour
     {
         attack.SetSwingTrue();
     }
+    void Attack()
+    {
+        attack.Attack();
+    }
 }
