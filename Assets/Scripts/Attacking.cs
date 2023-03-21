@@ -24,7 +24,7 @@ public class Attacking : MonoBehaviour
     public void Attack()
     {
         Vector3 camPos = Camera.main.gameObject.transform.position;
-        RaycastHit[] raycastHit = Physics.BoxCastAll(transform.position, new Vector3(0.5f, 0, 0.5f), Camera.main.gameObject.transform.forward, Quaternion.identity, 2f, attackLayer);
+        RaycastHit[] raycastHit = Physics.BoxCastAll(transform.position, new Vector3(0.75f, 0, 0.5f), Camera.main.gameObject.transform.forward, Quaternion.identity, 1.5f, attackLayer);
         if(raycastHit.Length > 0)
         {
             foreach (RaycastHit enemy in raycastHit)
