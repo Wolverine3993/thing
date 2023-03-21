@@ -57,9 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\SwordEvent.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Attacking.cs" />
+    <Compile Include="Assets\Scripts\Enemy\BasicAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -743,6 +745,10 @@
     <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
       <Project>{1A1BE7B9-E224-5A46-33B7-5769579BB19E}</Project>
       <Name>Unity.VisualScripting.State.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.AI.Navigation.Player.csproj">
+      <Project>{D07FB526-3A92-0F0D-BF9E-AD5F0B37BA30}</Project>
+      <Name>Unity.AI.Navigation.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
