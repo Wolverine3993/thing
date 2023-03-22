@@ -7,19 +7,51 @@ public class Attacking : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] LayerMask attackLayer;
     [SerializeField] float damage;
-    bool CanSwing = true;
+    bool canAction = true;
+    bool waitForCast = false;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && CanSwing)
+        if (!waitForCast)
         {
-            anim.SetBool("Swing", true);
-            CanSwing = false;
+            if (Input.GetMouseButtonDown(0) && canAction)
+            {
+                anim.SetBool("Swing", true);
+                canAction = false;
+            }
+            if (Input.GetKey(KeyCode.F) && canAction)
+            {
+                anim.SetBool("Cast", true);
+                canAction = false;
+            }
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                anim.SetBool("DoCast", true);
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                SetBoolsFalse();
+            }
+        }
+
+    }
+    public void SetBoolsFalse()
+    {
+        waitForCast = false;
+        canAction = true;
+        anim.SetBool("Cast", false);
+        anim.SetBool("DoCast", false);
     }
     public void SetSwingTrue()
     {
         anim.SetBool("Swing", false);
-        CanSwing = true;
+        canAction = true;
+    }
+    public void SetWait()
+    {
+        waitForCast = true;
     }
     public void Attack()
     {

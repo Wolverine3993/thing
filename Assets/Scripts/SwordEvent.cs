@@ -13,4 +13,8 @@ public class SwordEvent : MonoBehaviour
     {
         attack.Attack();
     }
+    void SetWait()
+    {
+        attack.SetWait();
+    }
 }
