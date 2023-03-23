@@ -17,4 +17,8 @@ public class SwordEvent : MonoBehaviour
     {
         attack.SetWait();
     }
+    void SetBoolsFalse()
+    {
+        attack.SetBoolsFalse();
+    }
 }

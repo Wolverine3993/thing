@@ -9,6 +9,14 @@ public class Attacking : MonoBehaviour
     [SerializeField] float damage;
     bool canAction = true;
     bool waitForCast = false;
+    [SerializeField] GameObject[] spells;
+    [SerializeField] GameObject[] spellEffects;
+    public enum Spells
+    {
+        Fire,
+        Air
+    }
+    public Spells currentSpell;
     void Update()
     {
         if (!waitForCast)
@@ -35,6 +43,10 @@ public class Attacking : MonoBehaviour
                 SetBoolsFalse();
             }
         }
+
+    }
+    public void Cast(string spell)
+    {
 
     }
     public void SetBoolsFalse()
