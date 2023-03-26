@@ -17,8 +17,12 @@ public class SwordEvent : MonoBehaviour
     {
         attack.SetWait();
     }
-    void SetBoolsFalse()
+    void DoCast()
     {
         attack.SetBoolsFalse();
+    }
+    void CastSpell()
+    {
+        attack.Cast();
     }
 }

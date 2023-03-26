@@ -389,6 +389,10 @@
 "Assets/Scripts/Enemy/EnemyHealth.cs"
 "Assets/Scripts/Movement.cs"
 "Assets/Scripts/PlayerHealth.cs"
+"Assets/Scripts/Spells/Air.cs"
+"Assets/Scripts/Spells/AirLittlies.cs"
+"Assets/Scripts/Spells/AirTrail.cs"
+"Assets/Scripts/Spells/Fire.cs"
 "Assets/Scripts/SwordEvent.cs"
 -langversion:9.0
 
