@@ -58,14 +58,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy\BasicAI.cs" />
     <Compile Include="Assets\Scripts\Spells\Fire.cs" />
+    <Compile Include="Assets\Scripts\Spells\AirTrail.cs" />
     <Compile Include="Assets\Scripts\SwordEvent.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Spells\AirLittlies.cs" />
     <Compile Include="Assets\Scripts\Attacking.cs" />
     <Compile Include="Assets\Scripts\Spells\Air.cs" />
-    <Compile Include="Assets\Scripts\Spells\AirTrail.cs" />
-    <Compile Include="Assets\Scripts\Spells\AirLittlies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
