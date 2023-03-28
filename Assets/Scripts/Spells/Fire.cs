@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
@@ -7,14 +5,17 @@ public class Fire : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] LayerMask playerLayer;
     Vector3 fwd;
     Rigidbody rb;
     [SerializeField] float explosionRadius;
     [SerializeField] float pushBack;
+    [SerializeField] float playerPushBack;
     [SerializeField] float damage;
     [SerializeField] float maxSize;
     [SerializeField] float up;
     GameObject explosion;
+    [SerializeField] Rigidbody player;
     void Start()
     {
         fwd = Camera.main.transform.forward;
@@ -42,15 +43,15 @@ public class Fire : MonoBehaviour
                     hit.collider.GetComponent<EnemyHealth>().Damage(damage);
                 }
             }
+            if(Physics.CheckSphere(transform.position, explosionRadius, playerLayer))
+            {
+                player.AddForce(-(transform.position - player.transform.position).normalized * playerPushBack);
+                Debug.Log("player hit ");
+            }
             explosion.transform.parent = null;
             explosion.SetActive(true);
             Destroy(explosion, 1);
             Destroy(this.gameObject);
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

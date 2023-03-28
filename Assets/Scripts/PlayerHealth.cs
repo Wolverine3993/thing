@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float health;
     [SerializeField] Image healthBar;
+    [SerializeField] GameObject deathScreen;
+    bool dead = false;
     void Start()
     {
         health = maxHealth;
@@ -23,9 +25,13 @@ public class PlayerHealth : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
-        if(health <= 0)
+        if(health <= 0 && !dead)
         {
-            Debug.Log("death");
+            deathScreen.SetActive(true);
+            healthBar.transform.parent.gameObject.SetActive(false);
+            Destroy(GetComponent<Movement>());
+            Cursor.lockState = CursorLockMode.None;
+            dead = true;
         }
     }
 }
