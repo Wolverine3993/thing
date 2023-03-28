@@ -13,7 +13,6 @@ public class BasicAI : MonoBehaviour
     [SerializeField] LayerMask playerLayer;
     [SerializeField] float attackRadius;
     [SerializeField] float fastRange;
-    [SerializeField] Object attacking;
     Animator anim;
     float timer;
     enum State

@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
         {
             if (TouchingGround())
             {
-                rb.AddForce(new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z));
+                rb.AddForce(new Vector3(0, jumpHeight, 0));
             }
         }
     }
