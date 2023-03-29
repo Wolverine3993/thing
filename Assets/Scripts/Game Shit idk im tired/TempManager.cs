@@ -12,6 +12,7 @@ public class TempManager : MonoBehaviour
     bool fullscreenState = true;
     float timeCount = 0;
     [SerializeField] TMP_Dropdown resolution;
+    [SerializeField] Slider mouseSentivity;
     int[] width = { 1920, 1600, 1280, 1280, 1280, 1024 };
     int[] height = { 1080, 900, 1024, 800, 720, 768 };
     private void Start()
@@ -57,5 +58,9 @@ public class TempManager : MonoBehaviour
     {
         int val = resolution.value;
         Screen.SetResolution(width[val], height[val], fullscreenState);
+    }
+    public void ChangeSensitivity()
+    {
+        GameMaster.cameraSentivity = mouseSentivity.value;
     }
 }

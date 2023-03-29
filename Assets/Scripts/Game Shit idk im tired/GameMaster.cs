@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public static class GameMaster
 {
     public static int currentScene;
+    public static float cameraSentivity;
     public static void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);

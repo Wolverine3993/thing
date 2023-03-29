@@ -57,9 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Enemy\BasicAI.cs" />
+    <Compile Include="Assets\Scripts\Game Shit idk im tired\TempManager.cs" />
     <Compile Include="Assets\Scripts\Spells\Fire.cs" />
     <Compile Include="Assets\Scripts\Spells\AirTrail.cs" />
     <Compile Include="Assets\Scripts\SwordEvent.cs" />
+    <Compile Include="Assets\Scripts\Game Shit idk im tired\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Game Shit idk im tired\TempManagerLevels.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySwordAttacking.cs" />
