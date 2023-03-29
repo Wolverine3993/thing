@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
             deathScreen.SetActive(true);
             healthBar.transform.parent.gameObject.SetActive(false);
             Destroy(GetComponent<Movement>());
+            Destroy(GetComponent<Attacking>());
             Cursor.lockState = CursorLockMode.None;
             dead = true;
         }

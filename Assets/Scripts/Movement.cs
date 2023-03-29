@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     [Header("Camera")]
     GameObject cameraObject;
-    [SerializeField] float cameraSensitivity;
+    float cameraSensitivity;
     float yRot;
     [Header("Movement")]
     [SerializeField] float movementSpeed;
@@ -18,23 +18,48 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     Rigidbody rb;
     Collider coll;
+    [Header("Pause")]
+    [SerializeField] GameObject pauseScreen;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         cameraObject = Camera.main.gameObject;
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
+        cameraSensitivity = GameMaster.cameraSentivity;
     }
     private void Update()
     {
-        z = Input.GetAxisRaw("Vertical");
-        x = Input.GetAxisRaw("Horizontal");
-        DoCameraShenanigans();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!GameMaster.paused)
+            {
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0;
+                GameMaster.paused = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Unpause();
+            }
+        }
+        if (!GameMaster.paused)
+        {
+            z = Input.GetAxisRaw("Vertical");
+            x = Input.GetAxisRaw("Horizontal");
+            DoCameraShenanigans();
+        }
     }
     private void FixedUpdate()
     {
-        DoMovement();
-        Jump();
+        if (!GameMaster.paused)
+        {
+            DoMovement();
+            Jump();
+        }
+        else
+            CounterMovement();
     }
     private void DoCameraShenanigans()
     {
@@ -88,5 +113,12 @@ public class Movement : MonoBehaviour
         Vector3 halfExtents = new Vector3((coll.bounds.size.x - 0.1f) / 2, 0.05f, (coll.bounds.size.z - 0.1f) / 2);
         bool raycastHit = Physics.BoxCast(center, halfExtents, Vector3.down, Quaternion.Euler(0, 0, 0), 0.1f, groundLayer);
         return raycastHit;
+    }
+    public void Unpause()
+    {
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1;
+        GameMaster.paused = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
