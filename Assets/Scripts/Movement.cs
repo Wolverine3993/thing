@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         cameraSensitivity = GameMaster.cameraSentivity;
+        Camera.main.fieldOfView = GameMaster.fov;
     }
     private void Update()
     {

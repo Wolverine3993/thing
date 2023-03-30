@@ -13,11 +13,17 @@ public class TempManager : MonoBehaviour
     float timeCount = 0;
     [SerializeField] TMP_Dropdown resolution;
     [SerializeField] Slider mouseSentivity;
+    [SerializeField] Slider fov;
+    [SerializeField] Toggle fullscrner;
     int[] width = { 1920, 1600, 1280, 1280, 1280, 1024 };
     int[] height = { 1080, 900, 1024, 800, 720, 768 };
     private void Start()
     {
         cam = Camera.main.transform;
+        fullscrner.isOn = Screen.fullScreen;
+        mouseSentivity.value = GameMaster.cameraSentivity;
+        resolution.value = GameMaster.currentResolution;
+        fov.value = GameMaster.fov;
     }
     private void Update()
     {
@@ -57,10 +63,15 @@ public class TempManager : MonoBehaviour
     public void ChangeResolution()
     {
         int val = resolution.value;
+        GameMaster.currentResolution = val;
         Screen.SetResolution(width[val], height[val], fullscreenState);
     }
     public void ChangeSensitivity()
     {
         GameMaster.cameraSentivity = mouseSentivity.value;
+    }
+    public void ChangeFOV()
+    {
+        GameMaster.fov = (int)fov.value;
     }
 }

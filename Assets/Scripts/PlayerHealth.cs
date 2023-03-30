@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
             Destroy(GetComponent<Movement>());
             Destroy(GetComponent<Attacking>());
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
             dead = true;
         }
     }
